@@ -48,7 +48,11 @@
       "pages": ["introduction", "quickstart"]
     },
     {
-      "group": "Essentials",
+      "group": "Pages",
+      "pages": ["essentials/markdown"]
+    },
+    {
+      "group": "Plugins",
       "pages": [
         "essentials/markdown",
         "essentials/code",
