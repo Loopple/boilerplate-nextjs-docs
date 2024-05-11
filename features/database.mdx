@@ -10,7 +10,7 @@ icon: 'database'
 
 We utilize [Supabase](https://supabase.io/) for managing our projects database. 
 Below are the functions used to interact with the Supabase database. These functions
-can be found inside `src/pages/dashboard/projects.js` file:
+can be found inside `src/pages/dashboard/projects.js` file.
 
 #### Fetching Projects
 
@@ -26,6 +26,7 @@ async function getProjects(supabase) {
     return data;
   }
 }
+```
 
 #### Adding a Project
 
@@ -56,5 +57,5 @@ If you haven't already set up a Supabase database, follow these steps to create 
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title TEXT,
     description TEXT
-);
-```
+    )
+    ```
