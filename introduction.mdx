@@ -56,37 +56,66 @@ NEXT_PUBLIC_OPENAI_API_KEY=
      </Card>
    </CardGroup>
 
-## Make it yours
+## Folder structure
 
-Update your docs to your brand and add valuable content for the best user conversion.
+Here is the folder structure tree:
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+```
+├── README.md
+├── next-env.d.ts
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── src
+│   ├── app
+│   │   ├── globals.css
+│   │   └── layout.js
+│   ├── components
+│   │   ├── Faq.js
+│   │   ├── Footer.js
+│   │   ├── Header.js
+│   │   ├── Heading.js
+│   │   ├── Navbar.js
+│   │   ├── PaddleLoader.js
+│   │   ├── Sidebar.js
+│   │   └── layout
+│   │       └── DashboardLayout.js
+│   ├── pages
+│   │   ├── _app.js
+│   │   ├── api
+│   │   │   └── translate.js
+│   │   ├── dashboard
+│   │   │   ├── ai-generator.js
+│   │   │   └── projects.js
+│   │   ├── dashboard.js
+│   │   ├── index.js
+│   │   ├── login.js
+│   │   ├── pagenotfound.js
+│   │   └── pricing.js
+│   └── utils
+│       ├── helpers.js
+│       ├── index.js
+│       └── useUser.js
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+- **README.md**: Contains project documentation, including setup instructions and usage guidelines.
+- **next.config.mjs**: Configures Next.js settings, such as webpack configuration and custom routes.
+- **package.json**: Contains project metadata and dependencies, including scripts for running tasks.
+- **src/**: Contains all the source code for the project.
+  - **app/**: Contains global stylesheets and layout components used across the application.
+    - `globals.css`: Global stylesheet for defining application-wide styles.
+    - `layout.js`: Layout component used to structure the overall layout of the application.
+  - **components/**: Contains reusable UI components used throughout the application.
+  - **pages/**: Contains Next.js page components, defining routes and layouts for different pages.
+    - `_app.js`: Overrides the default App component to provide global styles or layout components.
+    - `api/`: Contains server-side API routes handling requests from the client.
+    - `dashboard/`: Contains pages related to the application's dashboard, such as project management and AI generation.
+    - `index.js`: Represents the homepage of the application.
+    - `login.js`: Represents the login page of the application.
+    - `pagenotfound.js`: Represents the 404 error page when a requested page is not found.
+    - `pricing.js`: Represents the pricing page of the application.
+  - **utils/**: Contains utility functions or hooks used throughout the application.
+- **tailwind.config.js**: Configures Tailwind CSS settings, such as custom themes and plugins.
+- **tsconfig.json**: Configures TypeScript settings for the project, such as compiler options and paths.
