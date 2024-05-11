@@ -4,34 +4,181 @@ description: 'Details about the authentication'
 icon: 'lock'
 ---
 
-## Basic
+## Authentication Setup with Supabase Auth
 
-### Inline Code
+### Overview
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+The authentication setup in your application is powered by Supabase Auth, which provides user authentication and session management functionalities. This allows users to sign up, sign in, and manage their authentication state seamlessly.
 
+### Implementation Details
+
+#### `useUser` Utility Function
+
+The `useUser` function is a custom hook used to access user authentication information throughout the application. It provides access to the user's session, details, and loading state.
+
+```javascript
+import { createContext, useContext } from 'react';
+import { useUser as useSupaUser, useSessionContext } from '@supabase/auth-helpers-react';
+
+export const UserContext = createContext(undefined);
+
+export const MyUserContextProvider = (props) => {
+  // Get session and user information from Supabase Auth
+  const { session, isLoading: isLoadingUser, supabaseClient: supabase } = useSessionContext();
+  const user = useSupaUser();
+
+  // Additional state for user details and loading data
+  // ...
+
+  // Use useEffect to fetch user details from the database
+  // ...
+
+  const value = {
+    accessToken: session?.access_token ?? null,
+    user,
+    userDetails,
+    isLoading: isLoadingUser || isLoadingData,
+  };
+
+  return <UserContext.Provider value={value} {...props} />;
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (context === undefined) {
+    throw new Error(`useUser must be used within a MyUserContextProvider.`);
+  }
+  return context;
+};
 ```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
 
-### Code Block
+#### `_app.js` Configuration
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+The _app.js file serves as the entry point for configuring Supabase Auth in your application. It initializes the Supabase client and provides the session context to the entire application.
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
+```javascript
+"use client";
+import "../app/globals.css";
+import { useState } from "react";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { MyUserContextProvider } from "../utils/useUser";
+
+export default function MyApp({ Component, pageProps }) {
+  // Initialize Supabase client
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+
+  return (
+    <SessionContextProvider supabaseClient={supabaseClient}>
+      <MyUserContextProvider>
+        <Component {...pageProps} />
+      </MyUserContextProvider>
+    </SessionContextProvider>
+  );
 }
+
 ```
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
+### Usage 
+
+#### 1. Accessing User Authentication Information:
+
+Use the `useUser` hook to access user authentication information throughout your application. This hook provides access to the user's session, details, and loading state.
+
+Example
+
 ```
-````
+import { useUser } from '../utils/useUser';
+
+const ProfilePage = () => {
+  const { user, isLoading } = useUser();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      {user ? (
+        <div>Welcome, {user.email}!</div>
+      ) : (
+        <div>Please sign in to access your profile.</div>
+      )}
+    </div>
+  );
+};
+
+export default ProfilePage;
+```
+
+
+#### 2. Authentication Flow:
+
+Implement authentication flows such as sign-up, sign-in, and sign-out using Supabase Auth APIs. Handle authentication events and update the UI accordingly.
+
+Example:
+
+```javascript
+import { signIn, signOut } from '@supabase/auth';
+
+const LoginPage = () => {
+  const handleSignIn = async () => {
+    try {
+      await signIn();
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleSignIn}>Sign In</button>
+      <button onClick={handleSignOut}>Sign Out</button>
+    </div>
+  );
+};
+
+export default LoginPage;
+
+```
+
+
+## Login Page
+
+### Overview
+
+The Login page allows users to sign in to your application using their preferred authentication providers. This page utilizes the `Auth` component provided by Supabase Auth to streamline the login process and support multiple authentication providers.
+
+### Implementation
+
+#### `Auth` Component
+
+The `Auth` component integrates with Supabase Auth and provides a user-friendly interface for authentication. It supports various appearance configurations and allows users to sign in using different authentication providers.
+
+Example usage:
+```jsx
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+
+const LoginPage = ({ supabaseClient, redirectTo }) => {
+  return (
+    <Auth
+      supabaseClient={supabaseClient}
+      appearance={{ theme: ThemeSupa }}
+      providers={["github", "google"]} // Specify the authentication providers you want to enable
+      redirectTo={redirectTo} // Redirect URL after successful login
+    />
+  );
+};
+
+export default LoginPage;
+```
+
