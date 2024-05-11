@@ -27,11 +27,6 @@
   },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://boilerplate.loopple.com"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/mU7wgc3tRN"
@@ -39,7 +34,7 @@
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://loopple.com/blog"
+      "url": "https://www.loopple.com/blog"
     }
   ],
   "navigation": [
@@ -54,12 +49,10 @@
     {
       "group": "Features",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "features/database",
+        "features/authentication",
+        "essentials/payments",
+        "essentials/ai-integration"
       ]
     },
     {
