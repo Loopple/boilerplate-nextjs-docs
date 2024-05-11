@@ -54,15 +54,6 @@
         "features/payments",
         "features/ai-integration"
       ]
-    },
-    {
-      "group": "Tutorials",
-      "pages": [
-        "features/database",
-        "features/authentication",
-        "features/payments",
-        "features/ai-integration"
-      ]
     }
   ],
   "footerSocials": {
