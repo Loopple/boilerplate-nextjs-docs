@@ -11,12 +11,20 @@ Learn how to update your docs locally and and deploy them to the public.
 
 <AccordionGroup>
   <Accordion title="Paddle">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
+   
+      ### Paddle Plans
+
+      - **NEXT_PUBLIC_MONTHLY_PLAN_ID**: The plan ID for the monthly subscription option provided by [Paddle](https://paddle.com/docs/reference-guide/intro/what-is-paddle/plans-and-subscriptions/).
+      - **NEXT_PUBLIC_YEARLY_PLAN_ID**: The plan ID for the yearly subscription option provided by [Paddle](https://paddle.com/docs/reference-guide/intro/what-is-paddle/plans-and-subscriptions/).
+
+      ### Paddle Details
+
+      - **PADDLE_VENDOR_ID**: The vendor ID assigned by Paddle, used for identification purposes. You can find this ID in your [Paddle Vendor Settings](https://vendors.paddle.com/authentication).
+      - **PADDLE_VENTOR_API_KEY**: The API key provided by Paddle for vendor authentication and interaction with their API. You can generate and manage API keys in your [Paddle Vendor Settings](https://vendors.paddle.com/authentication).
+      - **PADDLE_VENDOR_AUTH_CODE**: The vendor authentication code used for authenticating requests with Paddle's API. This can be found in your [Paddle Vendor Settings](https://vendors.paddle.com/authentication).
+      - **PADDLE_SANDBOX**: A boolean flag indicating whether the Paddle integration is running in [sandbox mode](https://paddle.com/docs/reference-guide/testing/paddle-sandbox/) (`true` for sandbox, `false` otherwise).
+      - **NEXT_PUBLIC_PADDLE_VENDOR_ID**: The vendor ID assigned by Paddle, accessible to the client-side code due to being prefixed with `NEXT_PUBLIC`. You can find this ID in your [Paddle Vendor Settings](https://vendors.paddle.com/authentication).
+      - **NEXT_PUBLIC_PADDLE_SANDBOX**: A boolean flag indicating whether the Paddle integration is running in [sandbox mode](https://paddle.com/docs/reference-guide/testing/paddle-sandbox/), accessible to the client-side code due to being prefixed with `NEXT_PUBLIC`.
   </Accordion>
   <Accordion title="OpenAI">
     Previewing helps you make sure your changes look as intended. We built a
