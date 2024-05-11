@@ -45,10 +45,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-      ]
+      "pages": ["introduction", "quickstart"]
     },
     {
       "group": "Essentials",
@@ -63,9 +60,7 @@
     },
     {
       "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
+      "pages": ["api-reference/introduction"]
     },
     {
       "group": "Endpoint Examples",
