@@ -51,8 +51,8 @@
       "pages": [
         "features/database",
         "features/authentication",
-        "essentials/payments",
-        "essentials/ai-integration"
+        "features/payments",
+        "features/ai-integration"
       ]
     },
     {
