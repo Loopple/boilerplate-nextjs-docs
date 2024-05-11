@@ -4,34 +4,68 @@ description: 'Details about payments'
 icon: 'credit-card'
 ---
 
-## Basic
+## Pricing Page
 
-### Inline Code
+### Overview
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+The Pricing page allows users to choose and purchase subscription plans for your service. This page integrates with Paddle for handling payment processing and subscription management.
 
-```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+### Paddle Loader Component
 
-### Code Block
+The `PaddleLoader` component is responsible for loading the Paddle script and initializing the Paddle environment and vendor settings.
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+```jsx
+import Script from "next/script";
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
+export default function PaddleLoader(){
+  return (
+    <Script
+      src="https://cdn.paddle.com/paddle/paddle.js"
+      onLoad={() => {
+        if (process.env.NEXT_PUBLIC_PADDLE_SANDBOX) {
+          Paddle.Environment.set("sandbox");
+        }
+        Paddle.Setup({
+          vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
+        });
+      }}
+    />
+  );
+}
+
+### Purchase Buttons
+
+The purchase buttons allow users to select and purchase subscription plans. These buttons call the handleBuy function, which initializes the Paddle checkout process.
+
+```javascript
+function handleBuy(product_id) {
+    console.log("handle buy: ", product_id);
+
+    // Handle Paddle
+    try {
+        new Paddle.Checkout.open({
+        product: product_id,
+        email: user ? user.email : "", // Replace 'user.email' with actual user email
+        passthrough: "1",
+        successCallback: function (data) {
+            // Redirect to dashboard after successful purchase
+            router.push("/dashboard");
+        },
+        closeCallback: function () {
+            // Handle checkout close event
+            setIsLoading(false); // Update loading state if needed
+        },
+        });
+    } catch (error) {
+        console.error(error);
     }
 }
 ```
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-````
+### Usage
+
+1. Include the PaddleLoader component in your application, preferably in a layout component that is used across multiple pages.
+
+2. Add purchase buttons for each subscription plan on the Pricing page, and call the handleBuy function with the appropriate product ID when a button is clicked.
+
+3. Ensure that environment variables such as `NEXT_PUBLIC_PADDLE_VENDOR_ID`, `NEXT_PUBLIC_MONTHLY_PLAN_ID`, etc., are defined in your .env file.
