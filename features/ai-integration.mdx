@@ -4,34 +4,29 @@ description: 'Details about AI Integration'
 icon: 'microchip-ai'
 ---
 
-## Basic
+## OpenAI AI Generation
 
-### Inline Code
+### AI Generation Page
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+The AI Generation page allows users to generate text using the OpenAI API. Users can input prompts, and the AI model will generate relevant text based on the input.
 
-```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+#### Usage
 
-### Code Block
+1. Navigate to the AI Generation (`src/pages/dashboard/ai-generator.js`) page in your application.
+2. Input prompts into the text input field.
+3. Click the "Generate" button to trigger the AI model to generate text based on the input.
+4. View the generated text output displayed on the page.
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+### Backend API (translate.js)
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
+The `translate.js` file in the `api` directory serves as the backend API handler for interacting with the OpenAI API. It contains functions for sending requests to the OpenAI API and processing the response data.
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-````
+`api/translate.js`
+
+This file handles incoming requests and interacts with the OpenAI API to generate text based on the provided input.
+
+`utils/index.js`
+
+This file contains utility functions used to create prompts and interact with the OpenAI API for generating text.
+
+This setup enables your backend API to communicate with the OpenAI API to generate text based on user input. The utility function OpenAIStream handles the interaction with the OpenAI API and provides a stream of generated text back to the frontend.
