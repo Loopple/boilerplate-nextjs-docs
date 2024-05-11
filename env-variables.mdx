@@ -11,7 +11,6 @@ Learn how to update your docs locally and and deploy them to the public.
 
 <AccordionGroup>
   <Accordion title="Paddle">
-   
       ### Paddle Plans
 
       - **NEXT_PUBLIC_MONTHLY_PLAN_ID**: The plan ID for the monthly subscription option provided by [Paddle](https://paddle.com/docs/reference-guide/intro/what-is-paddle/plans-and-subscriptions/).
@@ -27,28 +26,21 @@ Learn how to update your docs locally and and deploy them to the public.
       - **NEXT_PUBLIC_PADDLE_SANDBOX**: A boolean flag indicating whether the Paddle integration is running in [sandbox mode](https://paddle.com/docs/reference-guide/testing/paddle-sandbox/), accessible to the client-side code due to being prefixed with `NEXT_PUBLIC`.
   </Accordion>
   <Accordion title="OpenAI">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+      ### OpenAI API Key
+
+      - **NEXT_PUBLIC_OPENAI_API_KEY**: The API key provided by OpenAI for authentication and interaction with their API. You can find and manage your API key in your [OpenAI Account Settings](https://platform.openai.com/account/api-keys).
   </Accordion>
   <Accordion title="Supabase">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+    ### Supabase Integration
+
+    - **NEXT_PUBLIC_SUPABASE_URL**: The URL endpoint for your Supabase project, used for accessing the Supabase database. You can find this URL in your [Supabase Project Settings](https://app.supabase.io/project/settings).
+    - **NEXT_PUBLIC_SUPABASE_ANON_KEY**: The anonymous key for your Supabase project, used for authentication and access to the Supabase API. You can find this key in your [Supabase Project Settings](https://app.supabase.io/project/settings).
   </Accordion>
   <Accordion title="NextJS">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+    ### Base URL Configuration
+
+    - **NEXT_PUBLIC_BASE_URL**: The base URL for your application, typically used for defining the root URL of your frontend. You can configure this URL in your application settings or environment variables. If you're using Vercel, you can also define this URL in your [Vercel Environment Variables](https://vercel.com/docs/environment-variables).
+    - **NEXT_PUBLIC_VERCEL_URL**: The URL assigned by Vercel to your deployment. This URL points to your Vercel deployment and can be used as the base URL for your application. You can find this URL in your Vercel dashboard or in your [Vercel Environment Variables](https://vercel.com/docs/environment-variables).
   </Accordion>
 </AccordionGroup>
 
