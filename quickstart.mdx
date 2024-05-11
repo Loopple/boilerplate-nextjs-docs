@@ -50,3 +50,21 @@ npm run lint
 Linting helps ensure code quality and adherence to coding standards.
 
 
+### 6. Set Up Supabase Database
+
+Before running the project, you need to create the "projects" table in your Supabase database. Follow these steps to create the table using the SQL editor:
+
+1. **Visit the Supabase Dashboard**: Go to the Supabase Dashboard and sign in or create an account if you haven't already.
+
+2. **Create a New Project**: Click on the "New Project" button to create a new project. Follow the prompts to set up your project.
+
+3. **Access the SQL Editor**: Once your project is created, navigate to the SQL editor from the left sidebar menu.
+
+4. **Create the Projects Table**: Use the SQL editor to create a table named "projects" with columns for the project data. Here's an example SQL query:
+
+   ```sql
+   CREATE TABLE projects (
+       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+       title TEXT,
+       description TEXT
+   );
