@@ -4,34 +4,57 @@ description: 'Details about the database that you get in the boilerplate'
 icon: 'database'
 ---
 
-## Basic
+## Managing Projects with Supabase
 
-### Inline Code
+### Using Supabase for Database Management
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+We utilize [Supabase](https://supabase.io/) for managing our projects database. 
+Below are the functions used to interact with the Supabase database. These functions
+can be found inside `src/pages/dashboard/projects.js` file:
 
-```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+#### Fetching Projects
 
-### Code Block
+The `getProjects` function fetches projects from the Supabase database.
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+```javascript
+async function getProjects(supabase) {
+  const { data, error } = await supabase.from("projects").select("*");
+  if (error) {
+    console.error("Error fetching projects:", error.message);
+    return [];
+  } else {
+    return data;
+  }
+}
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
+#### Adding a Project
+
+```javascript
+async function addProject(supabase, projectData) {
+  const { data, error } = await supabase.from("projects").insert(projectData);
+  if (error) {
+    console.error("Error adding project:", error.message);
+  } else {
+    console.log("Project added successfully:", data);
+  }
 }
 ```
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
+### Setting Up a Supabase Database
+
+If you haven't already set up a Supabase database, follow these steps to create one using the SQL editor:
+
+1. **Visit the Supabase Dashboard**: Go to the [Supabase Dashboard](https://app.supabase.io/) and sign in or create an account if you haven't already.
+
+2. **Create a New Project**: Click on the "New Project" button to create a new project. Follow the prompts to set up your project.
+
+3. **Access the SQL Editor**: Once your project is created, navigate to the SQL editor from the left sidebar menu.
+
+4. **Create a Table for Projects**: Use the SQL editor to create a table named "projects" with columns for the project data, such as project name, description, etc. Here's an example SQL query:
+   ```sql
+   CREATE TABLE projects (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT,
+    description TEXT
+);
 ```
-````
